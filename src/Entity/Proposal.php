@@ -29,7 +29,7 @@ class Proposal
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="proposals", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $nextStep;
 
