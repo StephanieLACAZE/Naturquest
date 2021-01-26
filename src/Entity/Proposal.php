@@ -41,7 +41,7 @@ class Proposal
 
     /**
      * @ORM\ManyToOne(targetEntity=Result::class, inversedBy="resultProposal")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $finalResult;
 

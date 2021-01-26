@@ -35,21 +35,31 @@ class Result
     private $resultProposal;
 
     /**
-     * @ORM\OneToOne(targetEntity=Animal::class, inversedBy="result", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $animalplug;
+    private $resultName;
 
     /**
-     * @ORM\OneToMany(targetEntity=Tree::class, mappedBy="result", orphanRemoval=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $treePlug;
+    private $resultPhoto;
 
     /**
-     * @ORM\OneToOne(targetEntity=Seed::class, inversedBy="result", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $seedPlug;
+    private $photoSpecies;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoMore;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoComplementary;
+
+    
 
     public function __construct()
     {
@@ -102,57 +112,64 @@ class Result
         return $this;
     }
 
-    public function getAnimalplug(): ?Animal
+    public function getResultName(): ?string
     {
-        return $this->animalplug;
+        return $this->resultName;
     }
 
-    public function setAnimalplug(Animal $animalplug): self
+    public function setResultName(string $resultName): self
     {
-        $this->animalplug = $animalplug;
+        $this->resultName = $resultName;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Tree[]
-     */
-    public function getTreePlug(): Collection
+    public function getResultPhoto(): ?string
     {
-        return $this->treePlug;
+        return $this->resultPhoto;
     }
 
-    public function addTreePlug(Tree $treePlug): self
+    public function setResultPhoto(string $resultPhoto): self
     {
-        if (!$this->treePlug->contains($treePlug)) {
-            $this->treePlug[] = $treePlug;
-            $treePlug->setResult($this);
+        $this->resultPhoto = $resultPhoto;
+
+        return $this;
+    }
+
+    public function getPhotoSpecies(): ?string
+    {
+        return $this->photoSpecies;
+    }
+
+    public function setPhotoSpecies(?string $photoSpecies): self
+    {
+        $this->photoSpecies = $photoSpecies;
+
+        return $this;
+    }
+
+    public function getPhotoMore(): ?string
+    {
+        return $this->photoMore;
+    }
+
+    public function setPhotoMore(?string $photoMore): self
+    {
+        $this->photoMore = $photoMore;
+
+        return $this;
+    }
+
+    public function getPhotoComplementary(): ?string
+    {
+        return $this->photoComplementary;
+    }
+
+    public function setPhotoComplementary(?string $photoComplementary): self
+    {
+        $this->photoComplementary = $photoComplementary;
+
+        return $this;
+    }            
+            
         }
-
-        return $this;
-    }
-
-    public function removeTreePlug(Tree $treePlug): self
-    {
-        if ($this->treePlug->removeElement($treePlug)) {
-            // set the owning side to null (unless already changed)
-            if ($treePlug->getResult() === $this) {
-                $treePlug->setResult(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getSeedPlug(): ?Seed
-    {
-        return $this->seedPlug;
-    }
-
-    public function setSeedPlug(Seed $seedPlug): self
-    {
-        $this->seedPlug = $seedPlug;
-
-        return $this;
-    }
-}
