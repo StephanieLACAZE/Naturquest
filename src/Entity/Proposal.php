@@ -28,7 +28,7 @@ class Proposal
     private $picture;
 
     /**
-     * @ORM\OneToOne(targetEntity=Question::class, inversedBy="proposals", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="proposals", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $nextStep;

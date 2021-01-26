@@ -25,7 +25,7 @@ class Question
     private $title;
 
     /**
-     * @ORM\OneToOne(targetEntity=Proposal::class, mappedBy="nextStep", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Proposal::class, mappedBy="nextStep", cascade={"persist", "remove"})
      */
     private $proposals;
 
