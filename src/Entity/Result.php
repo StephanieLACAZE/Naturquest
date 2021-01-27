@@ -24,16 +24,7 @@ class Result
      */
     private $text;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $subText;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Proposal::class, mappedBy="finalResult", cascade={"persist", "remove"})
-     */
-    private $resultProposal;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -83,35 +74,7 @@ class Result
         return $this;
     }
 
-    public function getSubText(): ?string
-    {
-        return $this->subText;
-    }
-
-    public function setSubText(string $subText): self
-    {
-        $this->subText = $subText;
-
-        return $this;
-    }
-
-    public function getResultProposal(): ?Proposal
-    {
-        return $this->resultProposal;
-    }
-
-    public function setResultProposal(Proposal $resultProposal): self
-    {
-        // set the owning side of the relation if necessary
-        if ($resultProposal->getFinalResult() !== $this) {
-            $resultProposal->setFinalResult($this);
-        }
-
-        $this->resultProposal = $resultProposal;
-
-        return $this;
-    }
-
+      
     public function getResultName(): ?string
     {
         return $this->resultName;

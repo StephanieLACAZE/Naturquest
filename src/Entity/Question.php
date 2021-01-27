@@ -6,6 +6,7 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -23,11 +24,6 @@ class Question
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Proposal::class, mappedBy="nextStep", cascade={"persist", "remove"})
-     */
-    private $proposals;
 
     /**
      * @ORM\OneToMany(targetEntity=Proposal::class, mappedBy="step")
@@ -56,23 +52,8 @@ class Question
         return $this;
     }
 
-    public function getProposals(): ?Proposal
-    {
-        return $this->proposals;
-    }
-
-    public function setProposals(Proposal $proposals): self
-    {
-        // set the owning side of the relation if necessary
-        if ($proposals->getNextStep() !== $this) {
-            $proposals->setNextStep($this);
-        }
-
-        $this->proposals = $proposals;
-
-        return $this;
-    }
-
+   
+      
     /**
      * @return Collection|Proposal[]
      */
@@ -102,4 +83,6 @@ class Question
 
         return $this;
     }
+    
+
 }

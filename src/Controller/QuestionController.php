@@ -17,12 +17,12 @@ use App\Entity\Result;
 class QuestionController extends AbstractController
 {
     #[Route('/question/{id}', name: 'question')]
-    public function index($id): Response
+    public function question($id): Response
     {   
         $question=$this->getDoctrine()->getRepository(Question::class)->find($id);
-        $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
-        JsonEncoder()));
+        $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
         $json = $serializer->serialize($question, 'json', [
+            'Depth' => 2,
             'circular_reference_handler' => function ($json) {
         
                 return $json->getId();
