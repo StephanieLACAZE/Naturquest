@@ -5,7 +5,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.proposal_pictures: /uploads/images/proposals
-    
+    app.path.result_photo: /uploads/images/result/find
+    app.path.result_species: /uploads/images/result/species
+    app.path.result_more: /uploads/images/result/more
+    app.path.result_complementary: /uploads/images/result/complementary
+
 services:
     # default configuration for services in *this* file
     _defaults:

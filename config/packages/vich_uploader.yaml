@@ -2,10 +2,26 @@ vich_uploader:
     db_driver: orm
     mappings:
         proposal_pictures:
-            uri_prefix: /images/proposal
-            upload_destination: '%kernel.project_dir%/public/images/proposal%'
+            uri_prefix: /uploads/images/proposals
+            upload_destination: '%kernel.project_dir%/public/uploads/images/proposal%'
         
-
+    
+        result_photo:
+            uri_prefix: /uploads/images/result/find
+            upload_destination: '%kernel.project_dir%/public/uploads/images/result/find%'
+    
+        result_species:
+            uri_prefix: /uploads/images/result/species
+            upload_destination: '%kernel.project_dir%/public/uploads/images/result/species%'
+    
+        result_more:
+            uri_prefix: /uploads/images/result/more
+            upload_destination: '%kernel.project_dir%/public/uploads/images/result/more%'
+    
+        result_complementary:
+            uri_prefix: /uploads/images/result/complementary
+            upload_destination: '%kernel.project_dir%/public/uploads/images/result/complementary%'
+                    
 
     #mappings:
     #    products:
