@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -12,6 +12,7 @@ use App\Entity\Question;
 use App\Entity\Result;
 
 
+
 class AdminController extends AbstractDashboardController
 {
     /**
@@ -19,7 +20,7 @@ class AdminController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('bundles/EasyAdminBundle/welcome.html.twig',[ 'Question'=>[]]);
     }
 
     public function configureDashboard(): Dashboard
@@ -34,5 +35,12 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Propositions ?!?!', 'fas fa-list', Proposal::class);
         yield MenuItem::linkToCrud('Questions ?', 'fa fa-tags', Question::class);
         yield MenuItem::linkToCrud('Résultats,youpi !! ', 'fas fa-user', Result::class);
+        
     }
+    public function adminDashboard()
+{
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+}
+
 }
