@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ProposalRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=ProposalRepository::class)
+ * @Vich\Uploadable
  */
 class Proposal
 {
@@ -24,8 +29,15 @@ class Proposal
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string | null
      */
     private $picture;
+    /**
+     * @Vich\UploadableField(mapping="proposal_pictures", fileNameProperty="picture")
+     * @var File | null
+     */
+    private $pictureFile;
+   
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="proposals", cascade={"persist", "remove"})
@@ -62,17 +74,30 @@ class Proposal
         return $this;
     }
 
-    public function getPicture(): ?string
+    
+    public function setPictureFile(?File $pictureFile = null):void
+    {
+        $this->pictureFile = $pictureFile;
+        if(null!== $pictureFile){
+            $this ->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getPictureFile():?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPicture(?string $picture):void
+    {
+        $this->picture = $picture;
+    }
+
+    public function getPicture():?string
     {
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
 
     public function getNextStep(): ?Question
     {
@@ -108,5 +133,9 @@ class Proposal
         $this->finalResult = $finalResult;
 
         return $this;
+    }
+    public function __toString():string
+    {
+        return $this->name;
     }
 }
