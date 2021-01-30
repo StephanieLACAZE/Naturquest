@@ -40,40 +40,38 @@
         {% endif %}
 
         <section class="content">
-            <form method="post" action="{{ action|default('') }}">
-                {% if csrf_token_intention|default(false) %}
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token(csrf_token_intention) }}">
-                {% endif %}
+            <form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-                <input type="hidden" name="{{ target_path_parameter|default('_target_path') }}" value="{{ target_path|default(ea is defined ? path(ea.dashboardRouteName) : '/') }}" />
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
 
-                <div class="form-group field-text">
-                    <label for="username" class="sr-only form-control-label required">{{ _username_label }}</label>
-                    <div class="form-widget form-widget-with-icon">
-                        <i class="fa fa-fw fa-user"></i>
-                        <input type="text" id="username" name="{{ username_parameter|default('_username') }}" class="form-control" placeholder="{{ _username_label }}" value="{{ last_username|default('') }}" required autofocus>
-                    </div>
-                </div>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputUsername">Username</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-                <div class="form-group field-password">
-                    <label for="password" class="sr-only form-control-label required">{{ _password_label }}</label>
-                    <div class="form-widget form-widget-with-icon">
-                        <i class="fa fa-fw fa-lock"></i>
-                        <input type="password" id="password" name="{{ password_parameter|default('_password') }}" class="form-control" placeholder="{{ _password_label }}" required>
-                    </div>
-                </div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
 
-                <div class="form-group field-button">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">{{ _sign_in_label }}</button>
-                </div>
-            </form>
 
-            <script type="text/javascript">
-                const loginForm = document.querySelector('form');
-                loginForm.addEventListener('submit', () => {
-                    loginForm.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
-                }, false);
-            </script>
-        </section>
-    </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form>
 {% endblock %}
