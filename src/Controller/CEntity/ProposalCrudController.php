@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ProposalCrudController extends AbstractCrudController
 {
@@ -25,12 +26,17 @@ class ProposalCrudController extends AbstractCrudController
     {
         return [
             IntegerField::new('id')->onlyOnIndex(),
-            IdField::new('step'),
-            IdField::new('nextStep'),
-            IdField::new('finalResult'),
-            TextEditorField::new('content'),
+           
+            
+            
+            TextField::new('content'),
             $pictureFile=TextareaField::new('pictureFile')->setFormType(VichImageType::class)->setLabel('Image'),
-         
+            AssociationField::new('nextStep', label:'Etapes'),
+            AssociationField::new('finalResult', label:'Fiche Résultat'),
+            AssociationField::new('step', label:'Etape Suivante'),
+           
+            
+            
         ];
     }
     

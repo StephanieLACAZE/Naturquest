@@ -77,6 +77,11 @@ class Result
      * @var File | null
      */
     private $photoComplementaryFile;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Feature::class, mappedBy="result")
+     */
+    private $features;
    
    
    
@@ -85,6 +90,7 @@ class Result
     public function __construct()
     {
         $this->treePlug = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,6 +221,33 @@ class Result
     public function __toString():string
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|Feature[]
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(Feature $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features[] = $feature;
+            $feature->addResult($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(Feature $feature): self
+    {
+        if ($this->features->removeElement($feature)) {
+            $feature->removeResult($this);
+        }
+
+        return $this;
     }
 }
 

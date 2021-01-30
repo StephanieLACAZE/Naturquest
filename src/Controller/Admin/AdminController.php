@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Proposal;
 use App\Entity\Question;
 use App\Entity\Result;
+use App\Entity\Feature;
 
 
 
@@ -26,7 +27,8 @@ class AdminController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('NaturQuest');
+           
+            ->setTitle('<img src="/image/logoNS.png" alt="logo"/>');
     }
 
     public function configureMenuItems(): iterable
@@ -35,6 +37,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Propositions', 'fas fa-list', Proposal::class);
         yield MenuItem::linkToCrud('Parcours de questions', 'fa fa-tags', Question::class);
         yield MenuItem::linkToCrud('Résultats', 'fas fa-bullhorn', Result::class);
+        yield MenuItem::linkToCrud('Caractéristiques', 'fas fa-list', Feature::class);
         
     }
     public function adminDashboard()

@@ -1,0 +1,29 @@
+body{
+    background-color:#e2ecba;
+
+}
+p { max-width: 600px; }
+.main-header {
+  
+    background-color: white;
+    padding: 25px;
+}
+.main-sidebar {
+    background: #784834;
+}
+h1{
+    color:white;
+}
+.content-header {
+    background: #34856e;
+}
+.content-header:after, .content-header:before {
+
+    background: #34856e;
+}
+.sidebar-menu li:not(.submenu-active).active .menu-icon, .sidebar-menu li:not(.submenu-active).active a {
+      color: #c2db65;
+}
+.sidebar-menu a {
+    color: white;
+}

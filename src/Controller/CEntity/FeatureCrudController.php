@@ -2,32 +2,29 @@
 
 namespace App\Controller\CEntity;
 
-use App\Entity\Question;
+use App\Entity\Feature;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Vich\UploaderBundle\Form\Type\VichFileType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 
-class QuestionCrudController extends AbstractCrudController
+
+class FeatureCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Question::class;
+        return Feature::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         return [
             IntegerField::new('id')->onlyOnIndex(),
-            TextField::new('title'),
-            
-            
+            TextField::new('name'),
+            TextEditorField::new('content'),
         ];
     }
     
