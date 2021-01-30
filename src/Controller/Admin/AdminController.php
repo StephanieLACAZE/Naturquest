@@ -31,10 +31,10 @@ class AdminController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Administrateur', 'fa fa-home');
-        yield MenuItem::linkToCrud('Propositions ?!?!', 'fas fa-list', Proposal::class);
-        yield MenuItem::linkToCrud('Questions ?', 'fa fa-tags', Question::class);
-        yield MenuItem::linkToCrud('Résultats,youpi !! ', 'fas fa-user', Result::class);
+        yield MenuItem::linktoDashboard('Accueil', 'fa fa-home');
+        yield MenuItem::linkToCrud('Propositions', 'fas fa-list', Proposal::class);
+        yield MenuItem::linkToCrud('Parcours de questions', 'fa fa-tags', Question::class);
+        yield MenuItem::linkToCrud('Résultats', 'fas fa-bullhorn', Result::class);
         
     }
     public function adminDashboard()
