@@ -11,6 +11,8 @@ use App\Entity\Proposal;
 use App\Entity\Question;
 use App\Entity\Result;
 use App\Entity\Feature;
+use App\Entity\Course;
+
 
 
 
@@ -38,6 +40,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Parcours de questions', 'fa fa-tags', Question::class);
         yield MenuItem::linkToCrud('Résultats', 'fas fa-bullhorn', Result::class);
         yield MenuItem::linkToCrud('Caractéristiques', 'fas fa-list', Feature::class);
+        yield MenuItem::linkToCrud('Parcours', 'fas fa-list', Course::class);
         
     }
     public function adminDashboard()

@@ -13,6 +13,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class ResultCrudController extends AbstractCrudController
 {
@@ -30,10 +32,11 @@ class ResultCrudController extends AbstractCrudController
             IdField::new('resultName'),
             TextEditorField::new('text'),
             AssociationField::new('features', label:'Caractéristiques'),
-            $pictureFile=TextareaField::new('resultPhotoFile')->setFormType(VichImageType::class)->setLabel('Image'),
-            $pictureFile=TextareaField::new('photoSpeciesFile')->setFormType(VichImageType::class)->setLabel('Image'),
-            $pictureFile=TextareaField::new('photoMoreFile')->setFormType(VichImageType::class)->setLabel('Image'),
-            $pictureFile=TextareaField::new('photoComplementaryFile')->setFormType(VichImageType::class)->setLabel('Image'),
+
+            $pictureFile=TextareaField::new('resultPhotoFile')->setFormType(VichImageType::class)->setLabel('Image Feuille/Empreinte'),
+            $pictureFile=TextareaField::new('photoSpeciesFile')->setFormType(VichImageType::class)->setLabel('Image Espece'),
+            $pictureFile=TextareaField::new('photoMoreFile')->setFormType(VichImageType::class)->setLabel('Image plus'),
+            $pictureFile=TextareaField::new('photoComplementaryFile')->setFormType(VichImageType::class)->setLabel('Image complémentaire'),
          
         ];
     }

@@ -57,6 +57,11 @@ class Proposal
      */
     private $finalResult;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Course::class)
+     */
+    private $courses;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,5 +142,17 @@ class Proposal
     public function __toString():string
     {
         return $this->content;
+    }
+
+    public function getCourses(): ?Course
+    {
+        return $this->courses;
+    }
+
+    public function setCourses(?Course $courses): self
+    {
+        $this->courses = $courses;
+
+        return $this;
     }
 }

@@ -238,7 +238,7 @@ class Result
             $feature->addResult($this);
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removeFeature(Feature $feature): self
