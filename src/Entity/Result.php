@@ -220,7 +220,9 @@ class Result
 
     public function __toString():string
     {
-        return $this->name;
+        return $this->resultName;
+        return $this->text;
+        
     }
 
     /**

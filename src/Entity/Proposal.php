@@ -37,7 +37,7 @@ class Proposal
      * @var File | null
      */
     private $pictureFile;
-   
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="proposals", cascade={"persist", "remove"})

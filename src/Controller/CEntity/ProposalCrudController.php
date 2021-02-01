@@ -31,6 +31,7 @@ class ProposalCrudController extends AbstractCrudController
             
             TextField::new('content'),
             $pictureFile=TextareaField::new('pictureFile')->setFormType(VichImageType::class)->setLabel('Image'),
+         
             AssociationField::new('nextStep', label:'Etapes'),
             AssociationField::new('finalResult', label:'Fiche Résultat'),
             AssociationField::new('step', label:'Etape Suivante'),
